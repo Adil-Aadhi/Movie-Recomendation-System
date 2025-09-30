@@ -11,6 +11,10 @@ import MoreMovie from './User/pages/moreMovie';
 import ActorPage from './User/pages/singleActor';
 import MovieFilter from './User/pages/genre';
 import DiscoverMovies from './User/pages/discover';
+import About from './User/pages/about';
+import Services from './User/pages/service';
+import HelpCenter from './User/pages/helpcenter';
+import NotFound from './User/pages/404page';
 
 function App() {
 
@@ -29,6 +33,10 @@ function App() {
         <Route path="/person/:id" element={<ActorPage/>}/>
         <Route path="/moviegenre" element={<MovieFilter/>}/>
         <Route path="/discovermovie" element={<DiscoverMovies/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/services" element={<Services/>}/>
+        <Route path="/helpcenter" element={<HelpCenter/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>
   )

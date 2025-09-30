@@ -13,16 +13,16 @@ const Footer = () => {
           </div>
            <p>Your personal movie recommendation engine</p>
           <div className="social-links">
-            <a href="#" aria-label="Facebook">
+            <a  aria-label="Facebook">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="#" aria-label="Twitter">
+            <a  aria-label="Twitter">
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="#" aria-label="Instagram">
+            <a  aria-label="Instagram">
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="#" aria-label="YouTube">
+            <a  aria-label="YouTube">
               <i className="fab fa-youtube"></i>
             </a>
           </div>
@@ -31,10 +31,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Discover</h4>
           <ul>
-            <li><a href="#">New Releases</a></li>
-            <li><a href="#">Trending Now</a></li>
-            <li><a href="#">Coming Soon</a></li>
-            <li><a href="#">Top Rated</a></li>
+            <li><Link to="/discovermovie">Coming Soon</Link></li>
           </ul>
         </div>
 
@@ -52,30 +49,29 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Support</h4>
           <ul>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/helpcenter">Help Center</Link></li>
           </ul>
         </div>
 
-        <div className="footer-section">
+        {/* <div className="footer-section">
           <h4>Newsletter</h4>
           <p>Subscribe to get movie recommendations</p>
           <div className="newsletter-form">
             <input type="email" placeholder="Your email address" />
             <button type="submit">Subscribe</button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} MovieRec. All rights reserved.</p>
-        <div className="footer-bottom-links">
+        {/* <div className="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
           <a href="#">Cookie Policy</a>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

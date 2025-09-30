@@ -161,7 +161,7 @@ function Navbar() {
               >
                 Services
               </Link>
-              <Link
+              {/* <Link
                 to="/contact"
                 className={`hover:text-cyan-300 transition-colors duration-300 ${
                   location.pathname === "/contact"
@@ -170,13 +170,15 @@ function Navbar() {
                 }`}
               >
                 Contact
-              </Link>
-              <Link
+              </Link> */}
+
+              {/* <Link
                 to="/profile"
                 className="p-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
               >
                 <FaUser />
-              </Link>
+              </Link> */}
+              
             </div>
 
             <div className="md:hidden flex items-center">
