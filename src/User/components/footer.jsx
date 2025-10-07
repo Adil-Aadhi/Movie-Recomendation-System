@@ -66,7 +66,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} MovieRec. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} MovieVerse. All rights reserved.</p>
         {/* <div className="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>

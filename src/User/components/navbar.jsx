@@ -11,6 +11,8 @@ function Navbar() {
   const [search,setSearch]=useState("");
   const {searchMovie}=api()
   const [movie,setMovie]=useState([])
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+
 
   const FetchMovie=async(query)=>{
     try{
@@ -182,7 +184,8 @@ function Navbar() {
             </div>
 
             <div className="md:hidden flex items-center">
-              <button className="p-2 mr-2 rounded-full bg-black bg-opacity-30">
+              <button className="p-2 mr-2 rounded-full bg-black bg-opacity-30"
+                onClick={() => setShowMobileSearch(!showMobileSearch)}>
                 <FaSearch />
               </button>
               <button
@@ -214,13 +217,29 @@ function Navbar() {
                 </svg>
               </button>
             </div>
+            
+            {showMobileSearch && (
+            <div className="md:hidden px-4 pb-4 bg-black bg-opacity-80 backdrop-blur-lg rounded-b-lg">
+              <div className="flex items-center bg-black/40 rounded-full px-3 py-2">
+                <FaSearch className="text-gray-400 mr-2 text-xl" />
+                <input
+                  type="text"
+                  placeholder="Search movies..."
+                  className="bg-transparent border-none focus:outline-none text-white placeholder-gray-400 flex-1"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+              {/* render search results here exactly like desktop */}
+            </div>
+          )}
           </div>
         </div>
 
         {isOpen && (
           <div className="md:hidden px-4 pb-4 pt-2 space-y-3 bg-black bg-opacity-50 backdrop-blur-lg rounded-b-lg">
             <Link
-              to="/"
+              to="/home"
               className="block py-2 hover:text-cyan-300 transition-colors duration-300 border-b border-gray-700"
               onClick={() => setIsOpen(false)}
             >
@@ -240,20 +259,20 @@ function Navbar() {
             >
               Services
             </Link>
-            <Link
+            {/* <Link
               to="/contact"
               className="block py-2 hover:text-cyan-300 transition-colors duration-300 border-b border-gray-700"
               onClick={() => setIsOpen(false)}
             >
               Contact
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               to="/profile"
               className="block py-2 hover:text-cyan-300 transition-colors duration-300"
               onClick={() => setIsOpen(false)}
             >
               Profile
-            </Link>
+            </Link> */}
           </div>
         )}
       </nav>
