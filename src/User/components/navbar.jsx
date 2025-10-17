@@ -95,7 +95,7 @@ function Navbar() {
               </div>
             </div>
             {search && movie.length > 0 && (
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-150  bg-black/90 rounded-md max-h-60 overflow-auto scrollbar-hide z-50">
+            <div className="hidden sm:block absolute top-full left-1/2 -translate-x-1/2 w-[600px] md:w-[600px] sm:w-[90%] bg-black/90 rounded-md max-h-60 overflow-auto scrollbar-hide z-50">
               {movie.map((m) => (
                 <Link
                   key={m.id}
@@ -136,7 +136,7 @@ function Navbar() {
 
             <div className="hidden md:flex items-center space-x-6">
               <Link
-                to="/home"
+                to="/"
                 className={`hover:text-cyan-300 transition-colors duration-300 ${
                   location.pathname === "/" ? "text-cyan-400 font-semibold" : ""
                 }`}
@@ -219,12 +219,12 @@ function Navbar() {
             </div>
             
             {showMobileSearch && (
-            <div className="md:hidden px-4 pb-4 bg-black bg-opacity-80 backdrop-blur-lg rounded-b-lg">
-              <div className="flex items-center bg-black/40 rounded-full px-3 py-2">
+            <div className="md:hidden px-4 pb-4 fixed top-20 left-0 right-0 bg-black/90 bg-opacity-80 backdrop-blur-lg rounded-b-lg">
+              <div className="flex items-center  rounded-full px-3 py-2">
                 <FaSearch className="text-gray-400 mr-2 text-xl" />
                 <input
                   type="text"
-                  placeholder="Search movies..."
+                  placeholder="Search movies, actors..."
                   className="bg-transparent border-none focus:outline-none text-white placeholder-gray-400 flex-1"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -236,10 +236,57 @@ function Navbar() {
           </div>
         </div>
 
+
+        {/*mobile searching show*/}
+
+        {showMobileSearch && search && movie.length > 0 && (
+          <div className="md:hidden fixed top-30 left-0 right-0 px-4 bg-black/80 bg-opacity-80 backdrop-blur-lg rounded-b-lg z-50">
+            <div className="flex flex-col gap-2 max-h-72 overflow-auto scrollbar-hide">
+              {movie.map((m) => (
+                <Link
+                  key={m.id}
+                  to={m.type === "movie" ? `/movie/${m.id}` : `/person/${m.id}`}
+                  className="flex items-center gap-3 px-3 py-2 text-white hover:bg-gray-700 rounded"
+                  onClick={() => setSearch("")}
+                >
+                  {m.type === "movie" ? (
+                    m.poster_path ? (
+                      <img
+                        src={`https://image.tmdb.org/t/p/w92${m.poster_path}`}
+                        alt={m.title}
+                        className="w-12 h-16 object-cover rounded"
+                      />
+                    ) : (
+                      <div className="w-12 h-16 bg-gray-700 flex items-center justify-center rounded text-xs">
+                        No Image
+                      </div>
+                    )
+                  ) : m.profile_path ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w92${m.profile_path}`}
+                      alt={m.name}
+                      className="w-12 h-16 object-cover rounded"
+                    />
+                  ) : (
+                    <div className="w-12 h-16 bg-gray-700 flex items-center justify-center rounded text-xs">
+                      No Image
+                    </div>
+                  )}
+
+                  <div className="flex flex-col truncate">
+                    <span className="truncate">{m.type === "movie" ? m.title : m.name}</span>
+                    <span className="text-xs text-gray-400">{m.type === "movie" ? "Movie" : "Actor"}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {isOpen && (
-          <div className="md:hidden px-4 pb-4 pt-2 space-y-3 bg-black bg-opacity-50 backdrop-blur-lg rounded-b-lg">
+          <div className="md:hidden fixed top-20 left-100 -translate-x-1/2 w-50 max-w-sm px-4 pb-4 pt-2 space-y-3 bg-black/70  backdrop-blur-lg rounded-lg z-50">
             <Link
-              to="/home"
+              to="/"
               className="block py-2 hover:text-cyan-300 transition-colors duration-300 border-b border-gray-700"
               onClick={() => setIsOpen(false)}
             >

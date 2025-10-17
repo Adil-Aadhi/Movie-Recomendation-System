@@ -32,7 +32,7 @@ function NotFound() {
         className="mt-6"
       >
         <Link
-          to="/home"
+          to="/"
           className="bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-yellow-500 transition"
         >
           ⬅ Back to Home

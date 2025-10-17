@@ -68,7 +68,7 @@ function Hero() {
   
 
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-b from-gray-900 to-black overflow-hidden py-8">
+    <div className="relative w-full bg-gradient-to-b from-gray-900 to-black overflow-hidden py-8 sm:min-h-screen">
       <div className="relative z-10 pt-16 pb-12 px-4 flex flex-col items-center justify-center">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 text-center">
           Featured Movies
@@ -79,65 +79,62 @@ function Hero() {
         
         <div className="w-full max-w-6xl mx-auto relative">
           {moviesData.length > 0 &&(
-            <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex);
-            }}
-            slidesPerView={2}  // Show 1.5 slides at a time (center + parts of sides)
-            centeredSlides={true} // Center the active slide
-            spaceBetween={30}     // Space between slides
-            loop={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
-            }}
-            navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
-            }}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="h-[60vh] w-full"
-            breakpoints={{
-              640: {
-                slidesPerView: 1.5,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 1.5,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 1.7,
-                spaceBetween: 40,
-              },
-            }}
-          >
-            {loopSlides.map((movie, i) => (
-              <SwiperSlide key={i} className="flex items-center justify-center">
-                <div className={`relative w-full h-full transition-all duration-500 rounded-2xl overflow-hidden ${activeIndex === i ? 'scale-100 brightness-100 z-10' : 'scale-90 brightness-50 z-0'}`}>
-                  <img
-                    src={movie.poster}
-                    alt={`Movie ${i + 1}`}
-                    className="w-full h-full object-cover cursor-pointer"
-                    onClick={()=>navigate(`/movie/${movie.id}`)}
-                  />
-                  {activeIndex === i && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-                      <h3 className="text-white text-2xl font-bold">{movie.title}</h3>
-                      <p className="text-gray-300">{movie.genre}</p>
+           <Swiper
+                onSwiper={(swiper) => { swiperRef.current = swiper; }}
+                onSlideChange={(swiper) => { setActiveIndex(swiper.realIndex); }}
+                slidesPerView={1.2}  // mobile default
+                centeredSlides={true}
+                spaceBetween={16}
+                loop={true}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                navigation={{
+                  nextEl: ".swiper-button-next-custom",
+                  prevEl: ".swiper-button-prev-custom",
+                }}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="w-full h-[60vw] sm:h-[60vh]"  // mobile: 60% of width, desktop: 60vh
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 16,
+                  },
+                  768: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 30,
+                  },
+                  1024: {
+                    slidesPerView: 1.7,
+                    spaceBetween: 40,
+                  },
+                }}
+              >
+                {loopSlides.map((movie, i) => (
+                  <SwiperSlide key={i} className="flex items-center justify-center">
+                    <div className={`relative w-full h-full transition-all duration-500 rounded-2xl overflow-hidden ${activeIndex === i ? 'scale-100 brightness-100 z-10' : 'scale-90 brightness-50 z-0'}`}>
+                      <img
+                        src={movie.poster}
+                        alt={movie.title}
+                        className="w-full h-full object-cover cursor-pointer"
+                        onClick={() => navigate(`/movie/${movie.id}`)}
+                      />
+                      {activeIndex === i && (
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 sm:p-6">
+                          <h3 className="text-white text-lg sm:text-2xl font-bold truncate">{movie.title}</h3>
+                          <p className="text-gray-300 text-sm sm:text-base">{movie.genre}</p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
           )}
           
           

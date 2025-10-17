@@ -22,11 +22,11 @@ function App() {
 
   return (
     <div>
-      {location.pathname !== "/" && <Navbar />}
+      {location.pathname !== "/home" && <Navbar />}
       <Routes>
-        <Route path="/" element={<Landing />} />
+        {/* <Route path="/" element={<Landing />} /> */}
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/movie/:id" element={<SingleMovie/>}/>
         <Route path="/moremovies" element={<MoreMovie/>}/>
